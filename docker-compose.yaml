@@ -4,9 +4,24 @@ services:
     build: .
     ports:
       - '8443:443'
+    restart: unless-stopped
   keycloak:
-    image: 'jboss/keycloak'
+    image: 'jboss/keycloak:8.0.2'
+    restart: unless-stopped
     environment:
       - KEYCLOAK_PASSWORD=pass
       - KEYCLOAK_USER=admin
       - PROXY_ADDRESS_FORWARDING=true
+      - DB_VENDOR=mysql
+      - DB_ADDR=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=keycldocker-compose
+      - JDBC_PARAMS=characterEncoding=UTF-8&useSSL=false
+## In case you use mysql from another docker-compose.
+## You can find the network by: docker inspect {docker_name}
+networks:
+  default:
+    external:
+      name: docker_env_default
