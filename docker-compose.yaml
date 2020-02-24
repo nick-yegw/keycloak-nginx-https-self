@@ -17,7 +17,7 @@ services:
       - DB_PORT=3306
       - DB_DATABASE=keycloak
       - DB_USER=keycloak
-      - DB_PASSWORD=keycldocker-compose
+      - DB_PASSWORD=keycloak
       - JDBC_PARAMS=characterEncoding=UTF-8&useSSL=false
 ## In case you use mysql from another docker-compose.
 ## You can find the network by: docker inspect {docker_name}
